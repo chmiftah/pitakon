@@ -151,7 +151,7 @@ console.log(res.data);
                                     <div className="bg-white rounded-lg shadow-md  pb-12">
                                         <div className="text-2xl font-bold py-4 px-10">Jawaban</div>
                                         <hr />
-                                        <div className="px-10 py-4 ">
+                                        <div className="px-4  ">
                                             <div className="mb-4 mt-6 ">
 
                                                 {
@@ -199,13 +199,13 @@ console.log(res.data);
 
 
                                                             answer.map((data, index) => (
-                                                                <div className="p-6 border my-4 border-blue-300 shadow- rounded-md  w-full mx-auto outline-none" >
+                                                                <div className="p-2 border my-4 border-blue-300 shadow- rounded-md  w-full mx-auto outline-none" >
 
                                                                     <Disclosure key={index}>
-                                                                        <Disclosure.Button className="hover:text-blue-500 py-2 text-gray-600 font-normal  text-xl" >
-                                                                            <p className="text-left " style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html:`${data.pertanyaan}`}}></p>
+                                                                        <Disclosure.Button className="hover:text-blue-500 py-2 text-gray-600 font-normal outline-none text-sm lg:text-lg" >
+                                                                            <p className="text-justify " style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html:`${data.pertanyaan}`}}></p>
                                                                         </Disclosure.Button>
-                                                                        <Disclosure.Panel className="text-gray-500 text-justify leading-relaxed font-medium"  >
+                                                                        <Disclosure.Panel className="text-gray-500 text-justify leading-relaxed font-medium text-xs lg:text-sm"  >
                                                                             <p style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={{__html:`${data.jawaban[0].text}`}}></p>
                                                                             <img src= {data.jawaban[0].media} alt="" />
                                                                         </Disclosure.Panel>
