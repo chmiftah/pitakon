@@ -14,11 +14,6 @@ export default function Home() {
     // const history = useNavigate()
     // const setData = useSetRecoilState(answerState)
 
-
- 
-
-
-
     return (
         <div>
             <div className="bg-gray-100">

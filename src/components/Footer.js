@@ -132,7 +132,7 @@ export default function Footer() {
                                     <SearchIcon className="h-8 w-8 text-gray-200" />
                                 </div>
                                 <div className="-mt-1">
-                                    <span className="text-xs font-semibold text-gray-200">Course</span>
+                                    <span className="text-xs font-semibold text-gray-200">Cari</span>
                                 </div>
                             </Link>
                         </div>

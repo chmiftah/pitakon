@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { SearchIcon } from '@heroicons/react/solid';
+import spinner from './spinner.gif'
 
 
 
@@ -21,19 +22,20 @@ export default function Question() {
     // const getData = useRecoilState(answerState)
     const [loading, setLoading] = useState(false)
     // console.log(getData[0]);
+    const [mounted, setMounted] = useState(false);
 
     const answerHandler = async (e) => {
         e.preventDefault();
-
+        setMounted(true)
         await brainly(question).then(res => {
-
 
 
             if (res.success === true) {
                 setLoading(true)
+                setMounted(false)
                 setAnswer(res.data)
                 Swal.fire({
-                    title: 'Successkkk',
+                    title: 'Success',
                     icon: 'success',
                     timer: 2000,
                 })
@@ -41,7 +43,7 @@ export default function Question() {
                 setLoading(false)
                 setAnswer(res.data)
                 Swal.fire({
-                    title: 'Gagal',
+                    title: 'Masalah Pada Jaringan Anda!',
                     icon: 'error',
                     timer: 2000,
                 })
@@ -54,7 +56,7 @@ export default function Question() {
 
     }
 
-    
+
 
     useEffect(() => {
 
@@ -63,10 +65,33 @@ export default function Question() {
 
 
     return (
-        <div>
+        <div className="relative">
+            {
+                mounted ?
+                    <div className="">
+                        <div className="bg-black z-50 bg-opacity-60 flex min-h-screen w-full absolute justify-center items-center">
+
+                            <div>
+                                <div>
+                                    <img src={spinner} alt="" className="w-24 h-24" />
+                                </div>
+                                <div>
+                                    <p className="animate-ping text-xs pl-6 ">Loading...</p>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                       :
+                       <div>
+
+                       </div>
+            }
             <div>
                 <Navbar />
-                <div className=" bg-gray-50 ">
+                <div className=" bg-gray-50">
                     <section className=" bg-gradient-to-br from-gray-900 via-blue-600 to-blue-500 px-10 pt-16 pb-32 ">
                         <div className="max-w-screen-xl mx-auto">
                             <div className="flex items-center gap-6">
@@ -130,7 +155,7 @@ export default function Question() {
                                             <div className="mb-4 mt-6 ">
 
                                                 {
-                                                    !loading? (
+                                                    !loading ? (
                                                         <div>
                                                             <div className="border border-blue-300 shadow rounded-md mb-6 p-4  w-full mx-auto">
                                                                 <div className="animate-pulse flex space-x-4">
@@ -172,9 +197,9 @@ export default function Question() {
                                                     )
                                                         : (
 
-                                                         
+
                                                             answer.map((data, index) => (
-                                                                <div className="p-6 border my-4 border-blue-300 shadow- rounded-md  w-full mx-auto" >
+                                                                <div className="p-6 border my-4 border-blue-300 shadow- rounded-md  w-full mx-auto outline-none" >
 
                                                                     <Disclosure key={index}>
                                                                         <Disclosure.Button className="hover:text-blue-500 py-2 text-gray-600 font-normal  text-xl" >
@@ -207,7 +232,21 @@ export default function Question() {
 
                 <Footer />
 
+
             </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
         </div>
     )
 }
