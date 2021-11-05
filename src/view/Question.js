@@ -28,7 +28,7 @@ export default function Question() {
         e.preventDefault();
         setMounted(true)
         await brainly(question).then(res => {
-
+console.log(res.data);
 
             if (res.success === true) {
                 setLoading(true)
@@ -203,10 +203,11 @@ export default function Question() {
 
                                                                     <Disclosure key={index}>
                                                                         <Disclosure.Button className="hover:text-blue-500 py-2 text-gray-600 font-normal  text-xl" >
-                                                                            <p className="text-left ">{data.pertanyaan}</p>
+                                                                            <p className="text-left " style={{whiteSpace: "pre-line"}} dangerouslySetInnerHTML={{__html:`${data.pertanyaan}`}}></p>
                                                                         </Disclosure.Button>
                                                                         <Disclosure.Panel className="text-gray-500 text-justify leading-relaxed font-medium"  >
-                                                                            {data.jawaban[0].text}
+                                                                            <p style={{whiteSpace: "pre-wrap"}} dangerouslySetInnerHTML={{__html:`${data.jawaban[0].text}`}}></p>
+                                                                            <img src= {data.jawaban[0].media} alt="" />
                                                                         </Disclosure.Panel>
                                                                     </Disclosure>
 
